@@ -11,7 +11,7 @@ public class PolishStrategy implements CalculationStrategy {
 
         LinkedList<Double> numbers = new LinkedList<>();
         LinkedList<Character> operators = new LinkedList<>();
-        //LinkedList<String> currency = new LinkedList<>();
+        LinkedList<Character> currency = new LinkedList<>();
 
         for (int i = 0; i < expression.length(); i++) {
             char currentChar = expression.charAt(i);
@@ -19,6 +19,10 @@ public class PolishStrategy implements CalculationStrategy {
             if (isDelimiter(currentChar)) {
                 continue;
             }
+            if (isPoint(currentChar)) {
+                continue;
+            }
+
 
             if (currentChar == '(') {
                 operators.add('(');
@@ -33,6 +37,29 @@ public class PolishStrategy implements CalculationStrategy {
                     processOperator(numbers, operators.removeLast());
                 }
                 operators.add(currentChar);
+            /*} else if(currentChar == '$'){
+                currency.add("$");
+            } else if (currentChar == 'e'){
+                if (currentChar == 'u')
+                    continue;
+                if (currentChar == 'r')
+                    continue;
+                currency.add("eur");*/
+            } else if(isCurrency(currentChar)){
+                if (currentChar == '$'){
+                    currency.add('$');
+                    if (currentChar == 'e' ||currentChar == 'u' || currentChar == 'r'){
+                        throw new IllegalArgumentException("Wrong currencies");
+                    }
+                }
+                if (currentChar == 'e' ||currentChar == 'u' || currentChar == 'r'){
+                    currency.add(currentChar);
+                    if (currentChar == '$'){
+                        throw new IllegalArgumentException("Wrong currencies");
+                    }
+                }
+
+
             } else {
                 StringBuilder value = new StringBuilder();
                 while (i < expression.length() && (Character.isDigit(currentChar)) || (isPoint(currentChar))){
@@ -61,6 +88,10 @@ public class PolishStrategy implements CalculationStrategy {
     private boolean isPoint(char c) {
         return c == '.';
     }
+    private boolean isCurrency(char c) {
+        return c == '$' || c == 'e' || c == 'u' || c == 'r';
+    }
+
 
     private int getPriority(char op) {
         switch (op) {
@@ -96,6 +127,10 @@ public class PolishStrategy implements CalculationStrategy {
 
 
     public static void main(String[] args) {
-        System.out.println(new PolishStrategy().calculate(String.valueOf(10 * (3.3 + 2.7 ))));
+        try {
+            System.out.println(new PolishStrategy().calculate("10 * 2"));
+        }catch (NumberFormatException e){
+            System.out.println(e.getStackTrace());
+        }
     }
 }
