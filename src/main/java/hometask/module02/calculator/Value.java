@@ -4,6 +4,7 @@ package hometask.module02.calculator;
  * Created by Юля on 10.04.2015.
  */
 public class Value {
+
     private double number;
     private String currency;
 

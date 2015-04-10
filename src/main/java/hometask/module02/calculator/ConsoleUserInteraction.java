@@ -6,6 +6,7 @@ import java.util.Scanner;
  * Created by Юля on 10.04.2015.
  */
 public class ConsoleUserInteraction {
+
     public static void main(String[] args) {
 
         CalculationStrategy calcStrategy = new PolishStrategy();

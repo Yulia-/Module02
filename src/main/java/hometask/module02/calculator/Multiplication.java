@@ -4,6 +4,7 @@ package hometask.module02.calculator;
  * Created by Юля on 10.04.2015.
  */
 public class Multiplication implements MathOperations {
+
     Double rightOperand;
     String rightCurrency;
     Double leftOperand;

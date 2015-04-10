@@ -7,6 +7,7 @@ import java.util.LinkedList;
  * Created by Юля on 30.03.2015.
  */
 public class PolishStrategy implements CalculationStrategy {
+
     @Override
     public String calculate(String expression) throws Exception {
 
