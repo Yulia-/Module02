@@ -63,12 +63,14 @@ public class PolishStrategy implements CalculationStrategy {
                         curr.append(currentChar);
                     }
                 }
-
-
-                numbers.add(new Value(Double.parseDouble(nums.toString()), curr.toString()));
+                String currency = curr.toString();
+                if ("".equals(currency)){
+                    currency = Value.EMPTY_CURRENCY;
+                }
+                numbers.add(new Value(Double.parseDouble(nums.toString()), currency));
 
                 --i;
-                //logger.info("Added new number");
+                logger.info("Added new number");
             }
         }
 
@@ -136,7 +138,7 @@ public class PolishStrategy implements CalculationStrategy {
 
      public static void main(String[] args) {
         try {
-            System.out.println(new PolishStrategy().calculate("10 + 2"));
+            System.out.println(new PolishStrategy().calculate("10 * 2$"));
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

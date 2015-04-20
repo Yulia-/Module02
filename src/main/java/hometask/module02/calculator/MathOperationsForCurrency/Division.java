@@ -10,8 +10,10 @@ public class Division implements MathOperations {
 
     @Override
     public Value calculate (Value rightValue, Value leftValue) throws Exception {
-        if ((leftValue.getCurrency().equals(rightValue.getCurrency()) && (leftValue.getCurrency().equals(null)
-                ||rightValue.getCurrency().equals(null)))) {
+        if ((leftValue.getCurrency().equals(rightValue.getCurrency())
+                && (leftValue.getCurrency().equals(Value.EMPTY_CURRENCY)))
+                ||(!leftValue.getCurrency().equals(rightValue.getCurrency())
+                && rightValue.getCurrency().equals(Value.EMPTY_CURRENCY))) {
             return new Value (leftValue.getNumber()/rightValue.getNumber(), leftValue.getCurrency());
         }
         else {
