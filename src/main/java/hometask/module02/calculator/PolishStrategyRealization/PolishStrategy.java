@@ -15,7 +15,6 @@ import java.util.logging.Logger;
  * Created by Þëÿ on 30.03.2015.
  */
 public class PolishStrategy implements CalculationStrategy {
-
     private static final Logger logger = Logger.getLogger(String.valueOf(PolishStrategy.class));
 
     @Override
