@@ -7,6 +7,7 @@ public class Value {
 
     private double number;
     private String currency;
+    public static String EMPTY_CURRENCY = "No Currency";
 
     public double getNumber() {
         return number;
@@ -31,9 +32,10 @@ public class Value {
 
     @Override
     public String toString() {
-        if (currency==null){
+        if (currency.equals(EMPTY_CURRENCY)){
             return number + " ";
         }
         return number + currency;
     }
 }
+
